@@ -200,14 +200,14 @@ class PySFD(object):
         self.l_ens               = _np.transpose(l_ens_numreplica)[0] if l_ens_numreplica is not None else None
         self.l_ens_numreplica    = dict(l_ens_numreplica) if l_ens_numreplica is not None else None
         self.intrajdatatype      = intrajdatatype
-        self._feature_func       = FeatureObj.get_feature_func() if FeatureObj is not None else None
-        self._feature_func_name  = self._feature_func.__name__ if FeatureObj is not None else None
-        self._num_sigma_funit    = { self._feature_func_name : None }
         self.l_bb_atomnames      = l_bb_atomnames
         self.intrajformat        = intrajformat
         self.pkg_dir             = _os.path.dirname(_os.path.abspath(__file__))
         self.num_bs              = num_bs
         self.maxnumframes        = maxnumframes
+        self._feature_func       = None
+        self._num_sigma_funit    = dict()
+        self._feature_func_name  = None
         if rnm2pdbrnm is None:
             self._rnm2pdbrnm     = {
                                    "ASH": "ASP",
@@ -229,7 +229,6 @@ class PySFD(object):
 
         # Preliminarily as of 10/2017, error_type is inherently defined in
         # feat_func(), and updated accordingly in
-        # self.error_type[self._feature_func_name]
         # in PySFD.run_ens() based on
         # "if not "sf" in l_traj_df[0].columns:" (see below)
         #
