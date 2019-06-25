@@ -334,6 +334,7 @@ class PySFD(object):
             Dataframe containing average and standard errors of interaction observables (e.g. frequencies)
             for all relevant pairs of residue backbone/sidechain entities
         """
+        print('run_ens')
         def mycircmean(x):
             return _scipy_stats.circmean(x, low = -_np.pi, high = _np.pi)
         def mycircstd(x):

@@ -1179,6 +1179,7 @@ class Dihedral(_SRF):
 
     @staticmethod
     def _feature_func_engine(args, params):
+        print('ffunc')
         """
         Computes a type of dihedral as defined by feat_subfunc
     
