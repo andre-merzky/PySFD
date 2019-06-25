@@ -189,7 +189,7 @@ class PySFD(object):
     you may want to temporarily disable
     """
 
-    def __init__(self, l_ens_numreplica = None, FeatureObj = None, intrajdatatype = "samplebatches",
+    def __init__(self, l_ens_numreplica = None, intrajdatatype = "samplebatches",
                  intrajformat = "xtc", num_bs = 10, maxnumframes = -1, rnm2pdbrnm = None, l_bb_atomnames = None):
         param2possible_values = dict(intrajdatatype = ['samplebatches', 'raw', 'convcheck', 'bootstraps'], intrajformat = ['xtc', 'dcd', 'pdb'])
         for myparam in param2possible_values:
@@ -243,6 +243,10 @@ class PySFD(object):
         self.df_fhists           = {}
         self.df_feature_diffs    = {}
         self.is_bb               = lambda x: 1 if x in ["N", "CA", "C", "O"] else 0
+
+    def init(self, FeatureObj):
+        # use feature_func setter for proper initialization
+        self.feature_func = FeatureObj
 
     def rnm2pdbrnm(self, x):
         if x not in self._rnm2pdbrnm:
