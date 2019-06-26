@@ -229,6 +229,7 @@ class PySFD(object):
 
         # Preliminarily as of 10/2017, error_type is inherently defined in
         # feat_func(), and updated accordingly in
+        # self.error_type[self._feature_func_name]
         # in PySFD.run_ens() based on
         # "if not "sf" in l_traj_df[0].columns:" (see below)
         #
